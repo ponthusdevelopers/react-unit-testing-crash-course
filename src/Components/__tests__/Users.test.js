@@ -1,4 +1,6 @@
 import { render, screen, cleanup } from '@testing-library/react'
+import renderer from 'react-test-renderer'
+
 import Users from '../Users'
 
 /* test('Should render Users component', () => {
@@ -29,4 +31,10 @@ test('Should render legal user', () => {
     expect(userElement).toBeInTheDocument()
     expect(userElement).toHaveTextContent('Kelly')
     expect(userElement).toContainHTML('green')
+})
+
+test('Matches snapshot', () => {
+    const user = {id: 1, name: 'John', age: 15}
+    const tree = renderer.create(<Users user={user} />).toJSON()
+    expect(tree).toMatchSnapshot()
 })
