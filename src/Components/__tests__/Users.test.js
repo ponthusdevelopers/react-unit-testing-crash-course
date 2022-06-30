@@ -8,6 +8,10 @@ import Users from '../Users'
     expect(userElement).toHaveTextContent('Hi')
 }) */
 
+afterEach(() => {
+    cleanup()
+})
+
 test('Should render illegal user', () => {
     const user = {id: 1, name: 'John', age: 15}
 
@@ -24,4 +28,5 @@ test('Should render legal user', () => {
     const userElement = screen.getByTestId('user-2')
     expect(userElement).toBeInTheDocument()
     expect(userElement).toHaveTextContent('Kelly')
+    expect(userElement).toContainHTML('green')
 })
